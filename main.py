@@ -9,7 +9,11 @@ with open('uhv.pdf', 'rb') as pdf_file:
     speed = 250
     engine.setProperty('rate', speed)
 
+    from_page = 5
+
     for page in range(num_pages):
+        if page < from_page - 1:
+            continue
         pdf_page = pdf_reader.pages[page]
         page_text = pdf_page.extract_text()
         engine.say(page_text)
